@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ko">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>차량 운행일지</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="app-container">
+        <header>
+            <h1>차량 운행일지</h1>
+            <p>간편하게 기록하고 관리하세요</p>
+        </header>
+
+        <main>
+            <!-- Settings Section -->
+            <section class="card settings-section">
+                <div class="form-group">
+                    <label for="initialDistance">기본 누적거리 (차량의 현재 총 주행거리)</label>
+                    <input type="number" id="initialDistance" placeholder="예: 0" min="0">
+                    <p class="help-text">첫 운행 기록의 기준이 되는 거리입니다.</p>
+                </div>
+            </section>
+
+            <!-- Input Form -->
+            <section class="card input-section">
+                <h2>새 운행 기록</h2>
+                <form id="logForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="date">운행일자</label>
+                            <input type="date" id="date" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="day">요일</label>
+                            <input type="text" id="day" readonly placeholder="자동 입력">
+                        </div>
+                        <div class="form-group">
+                            <label for="distance">주행거리 (km)</label>
+                            <input type="number" id="distance" min="0" required placeholder="예: 50">
+                        </div>
+                        <div class="form-group">
+                            <label for="cumulative">누적거리 (km)</label>
+                            <input type="number" id="cumulative" readonly placeholder="자동 계산">
+                        </div>
+                    </div>
+
+                    <div class="form-divider">운행 구간</div>
+
+                    <div class="route-grid">
+                        <div class="form-group">
+                            <label for="start">출발지</label>
+                            <input type="text" id="start" required placeholder="출발지" lang="ko" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="via">경유지</label>
+                            <input type="text" id="via" placeholder="(선택)" lang="ko" autocomplete="off">
+                        </div>
+                        <div class="form-group">
+                            <label for="end">도착지</label>
+                            <input type="text" id="end" required placeholder="도착지" lang="ko" autocomplete="off">
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn-primary">기록 저장</button>
+                </form>
+            </section>
+
+            <!-- Data Table -->
+            <section class="card list-section">
+                <div class="section-header">
+                    <h2>운행 내역</h2>
+                    <div class="button-group">
+                        <button id="realExportBtn" class="btn-secondary">데이터 내보내기</button>
+                        <button id="importBtn" class="btn-secondary">데이터 불러오기</button>
+                        <button id="resetBtn" class="btn-secondary">초기화</button>
+                        <input type="file" id="importFile" accept=".json" style="display: none;">
+                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="log-table">
+                        <thead>
+                            <tr>
+                                <th>날짜</th>
+                                <th>요일</th>
+                                <th>주행(km)</th>
+                                <th>누적(km)</th>
+                                <th>구간</th>
+                                <th>삭제</th>
+                            </tr>
+                        </thead>
+                        <tbody id="logTableBody">
+                            <!-- Rows will be added here -->
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>
