@@ -176,6 +176,12 @@ input:read-only {
     -webkit-overflow-scrolling: touch;
 }
 
+.history-container {
+    height: 400px;
+    overflow-y: auto;
+    border: 1px solid #ddd;
+}
+
 .log-table {
     width: 100%;
     border-collapse: collapse;
@@ -193,7 +199,12 @@ input:read-only {
 .log-table th {
     font-weight: 600;
     color: var(--text-muted);
-    background-color: #f9fafb;
+    background-color: white;
+    /* Ensure text doesn't overlap transparently */
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .log-table tr:last-child td {
